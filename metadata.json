@@ -1,0 +1,5 @@
+{
+  "name": "Apna Mandla",
+  "description": "A digital marketplace for Mandla city with location-based features and user dashboard.",
+  "requestFramePermissions": ["geolocation"]
+}

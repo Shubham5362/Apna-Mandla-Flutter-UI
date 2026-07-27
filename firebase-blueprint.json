@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user mini-website data and profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "displayName": { "type": "string", "description": "Full name" },
+        "bio": { "type": "string", "description": "Mini-website bio" },
+        "websiteTitle": { "type": "string", "description": "Title of the mini-website" },
+        "photoURL": { "type": "string", "description": "Profile picture URL" },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          },
+          "description": "Social or custom links"
+        },
+        "theme": { "type": "string", "description": "Color theme for the mini-website" },
+        "role": { "type": "string", "enum": ["customer", "seller", "admin"], "description": "User role" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName"]
+    },
+    "SellerApplication": {
+      "title": "Seller Application",
+      "description": "Application to become a seller",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "shopName": { "type": "string" },
+        "category": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "appliedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "shopName", "category", "address", "phone", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile documents"
+    },
+    "/sellerApplications/{applicationId}": {
+      "schema": "SellerApplication",
+      "description": "Seller application documents"
+    }
+  }
+}
